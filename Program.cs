@@ -1,48 +1,52 @@
-using EAD2.Models;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Writers;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
+using EAD2.Models; // Ensure this namespace correctly points to where your ApplicationDbContext is located.
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://movieproject.azurewebsites.net")
-                            .AllowAnyHeader()
-                            .AllowAnyMethod(); 
-                      });
-});
-
 // Add services to the container.
-
 builder.Services.AddControllers();
-builder.Services.AddDbContext<MovieContext>(opt =>
-opt.UseInMemoryDatabase("MovieList"));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Add DbContext using SQL Server Provider with the connection string from appsettings.json.
+// Ensure the name of the connection string matches what you have in appsettings.json.
+builder.Services.AddDbContext<MovieContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext")));
+// Register the Swagger generator, defining one or more Swagger documents.
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Movie app API",
+        Version = "v1",
+        Description = "A simple ASP.NET Core Web API for our Planner App",
+    });
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planner App API V1"));
 }
-
-app.UseDefaultFiles();
-app.UseStaticFiles();
+else
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planner App API V1"));
+}
 
 app.UseHttpsRedirection();
 
-app.UseCors(MyAllowSpecificOrigins);
-
 app.UseAuthorization();
+
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/swagger");
+    return Task.CompletedTask;
+});
 
 app.MapControllers();
 

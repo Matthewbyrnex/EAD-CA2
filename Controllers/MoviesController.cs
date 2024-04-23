@@ -92,12 +92,12 @@ namespace EAD2.Controllers
         // POST: api/Movies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Movies>> PostMovies(Movies movies)
+        public async Task<ActionResult<Movies>> PostMovies(Movies Movies)
         {
-            _context.Movies.Add(movies);
+            _context.Movies.Add(Movies);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(PostMovies), new { id = movies.Id }, movies);
+            return CreatedAtAction(nameof(PostMovies), new { id = Movies.Id }, Movies);
         }
 
         // DELETE: api/Movies/5

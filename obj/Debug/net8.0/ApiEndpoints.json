@@ -28,7 +28,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "movies",
+        "Name": "Movies",
         "Type": "EAD2.Models.Movies",
         "IsRequired": true
       }
@@ -123,25 +123,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "EAD2.Controllers.MovieController",
-    "Method": "Get",
-    "RelativePath": "Movie",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[EAD2.Models.Movies, EAD2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
   }
 ]

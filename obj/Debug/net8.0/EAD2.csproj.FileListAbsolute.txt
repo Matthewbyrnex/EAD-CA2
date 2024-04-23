@@ -257,3 +257,4 @@ C:\Users\joefa\source\repos\EAD2\EAD2\bin\Debug\net8.0\Frontend\ios\MovieProject
 C:\Users\joefa\source\repos\EAD2\EAD2\bin\Debug\net8.0\Frontend\package-lock.json
 C:\Users\joefa\source\repos\EAD2\EAD2\bin\Debug\net8.0\Frontend\package.json
 C:\Users\joefa\source\repos\EAD2\EAD2\bin\Debug\net8.0\Frontend\tsconfig.json
+C:\Users\joefa\source\repos\EAD2\EAD2\obj\Debug\net8.0\EAD2.sourcelink.json
