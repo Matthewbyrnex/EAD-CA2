@@ -1,0 +1,7 @@
+@EAD2_HostAddress = http://movieproject.azurewebsites.net
+
+
+GET {{EAD2_HostAddress}}/MovieApp/
+Accept: application/json
+
+###
