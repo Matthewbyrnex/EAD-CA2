@@ -45,13 +45,7 @@ namespace EAD2.Models
                 // Navigation property is configured via the Movies entity
             });
 
-            {
-                modelBuilder.Entity<User>()
-                    .HasMany(u => u.LikedMovies)
-                    .WithMany(m => m.Users);
-            }
-
-
+            
 
             // Add this if you haven't already to explicitly set the table names (optional)
             modelBuilder.Entity<Movies>().ToTable("Movies");

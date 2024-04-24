@@ -29,7 +29,7 @@ namespace EAD2.Controllers
 
         // GET: api/Movies/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movies>> GetMovies(string id)
+        public async Task<ActionResult<Movies>> GetMovies(long id)
         {
             var movies = await _context.Movies.FindAsync(id);
 

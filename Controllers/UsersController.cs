@@ -29,16 +29,16 @@ namespace EAD2.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUserWithMovies(long userId)
+        public async Task<ActionResult<User>> GetUser(long id)
         {
-            var user = await _context.Users
-                .Include(u => u.LikedMovies)
-                .FirstOrDefaultAsync(u => u.Id == userId);
+            var user = await _context.Users.FindAsync(id);
 
             if (user == null)
-                return NotFound("User not found.");
+            {
+                return NotFound();
+            }
 
-            return Ok(user);
+            return user;
         }
 
         [HttpGet("{userId}/likedmovies")]
@@ -121,9 +121,8 @@ namespace EAD2.Controllers
                 .Include(u => u.LikedMovies)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
-            if (user == null) return NotFound("User not found.");
             var movie = await _context.Movies.FindAsync(movieId);
-            if (movie == null) return NotFound("Movie not found.");
+            if (movie == null) return NotFound();
 
             user.LikedMovies.Add(movie);
             await _context.SaveChangesAsync();

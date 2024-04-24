@@ -164,7 +164,7 @@
     "Parameters": [
       {
         "Name": "id",
-        "Type": "System.String",
+        "Type": "System.Int64",
         "IsRequired": true
       }
     ],
@@ -281,20 +281,15 @@
   },
   {
     "ContainingType": "EAD2.Controllers.UsersController",
-    "Method": "GetUserWithMovies",
+    "Method": "GetUser",
     "RelativePath": "api/Users/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int64",
-        "IsRequired": false
-      },
-      {
         "Name": "id",
-        "Type": "",
+        "Type": "System.Int64",
         "IsRequired": true
       }
     ],

@@ -11,7 +11,6 @@ namespace EAD2.Models
 
         public long DirectorId { get; set; }
 
-        public List<User> Users { get; set; } = new List<User>();
     }
 
     public class Director
@@ -28,6 +27,6 @@ namespace EAD2.Models
         public long Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }  // Stored as a hash for security
-        public List<Movies> LikedMovies { get; set; } = new List<Movies>();  // Navigation property for liked movies
+        public List<Movies> LikedMovies { get; set; }   // Navigation property for liked movies
     }
 }

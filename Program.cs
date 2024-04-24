@@ -8,11 +8,7 @@ using Microsoft.Data.SqlClient;
 using EAD2.Models; // Ensure this namespace correctly points to where your ApplicationDbContext is located.
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-    }); 
+builder.Services.AddControllers();
 // Add DbContext using SQL Server Provider with the connection string from appsettings.json.
 // Ensure the name of the connection string matches what you have in appsettings.json.
 builder.Services.AddDbContext<MovieContext>(options =>
@@ -45,7 +41,7 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie app API V1"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Moive app API V1"));
 }
 
 app.UseHttpsRedirection();
