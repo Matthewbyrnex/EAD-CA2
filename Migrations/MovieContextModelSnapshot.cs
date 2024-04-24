@@ -79,9 +79,7 @@ namespace EAD2.Migrations
                 {
                     b.HasOne("EAD2.Models.Director", "Director")
                         .WithMany("Movies")
-                        .HasForeignKey("DirectorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DirectorId");
 
                     b.Navigation("Director");
                 });

@@ -5,7 +5,7 @@
 namespace EAD2.Migrations
 {
     /// <inheritdoc />
-    public partial class Test6 : Migration
+    public partial class Test13 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

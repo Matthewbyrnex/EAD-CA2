@@ -4,10 +4,11 @@ namespace EAD2.Models {
     public class Movies
     {
         public long Id { get; set; }
-        public long? DirectorId { get; set; }  // Making DirectorId nullable
         [Required]
         [StringLength(255)]
         public string Title { get; set; }
+
+        public long DirectorId { get; set; }
         [Range(0, 10)]
         public float Rating { get; set; }
         [DataType(DataType.Date)]
@@ -15,7 +16,7 @@ namespace EAD2.Models {
         [StringLength(1000)]
         public string? Summary { get; set; }
 
-        public virtual Director Director { get; set; }  // Navigation property
+        public virtual Director Director { get; set; }  
     }
 
     public class Director

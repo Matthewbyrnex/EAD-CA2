@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using System.IO;
 
 
@@ -11,6 +12,7 @@ namespace EAD2.Models
         {
 
         }
+
 
         public DbSet<Movies> Movies { get; set; } = null!;
         public DbSet<Director> Director { get; set; } = null!;
