@@ -29,7 +29,7 @@ namespace EAD2.Controllers
 
         // GET: api/Movies/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movies>> GetMovies(long id)
+        public async Task<ActionResult<Movies>> GetMovies(string id)
         {
             var movies = await _context.Movies.FindAsync(id);
 
@@ -39,6 +39,25 @@ namespace EAD2.Controllers
             }
 
             return movies;
+        }
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Movies>>> GetMoviesByTitle(string title)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                return BadRequest("Title parameter is required.");
+            }
+
+            var movies = await _context.Movies
+                .Where(m => m.Title != null && m.Title.Contains(title))
+                .ToListAsync();
+
+            if (movies == null || movies.Count == 0)
+            {
+                return NotFound("No movies found with the specified title.");
+            }
+
+            return Ok(movies);
         }
 
         [HttpGet("{id}/suggestions")]
