@@ -14,16 +14,34 @@ namespace EAD2.Models
         }
 
 
+
         public DbSet<Movies> Movies { get; set; } = null!;
         public DbSet<Director> Director { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Movies>()
-            .HasOne(m => m.Director)
-            .WithMany(d => d.Movies)
-            .HasForeignKey(m => m.DirectorId)
-            .IsRequired(false);
+            modelBuilder.Entity<Movies>(entity =>
+            {
+                entity.HasKey(e => e.Id); // Primary key
+                entity.Property(e => e.Title).IsRequired(false); // Optional Title
+                entity.Property(e => e.DirectorId); // Foreign Key
+
+                // Establishing the relationship to Director
+                entity.HasOne<Director>() // Movies has one Director
+                    .WithMany(d => d.Movies) // Director has many Movies
+                    .HasForeignKey(m => m.DirectorId) // Foreign key on Movies
+                    .OnDelete(DeleteBehavior.Cascade); // Configure the delete behavior
+            });
+
+            // Configuring the Director entity
+            modelBuilder.Entity<Director>(entity =>
+            {
+                entity.HasKey(e => e.Id); // Primary key
+                entity.Property(e => e.Name).IsRequired(false); // Optional Name
+
+                // Navigation property is configured via the Movies entity
+            });
+
 
 
             // Add this if you haven't already to explicitly set the table names (optional)
