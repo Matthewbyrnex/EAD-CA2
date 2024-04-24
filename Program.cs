@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Microsoft.Data.SqlClient;
 
 using EAD2.Models; // Ensure this namespace correctly points to where your ApplicationDbContext is located.
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 // Add DbContext using SQL Server Provider with the connection string from appsettings.json.
 // Ensure the name of the connection string matches what you have in appsettings.json.
 builder.Services.AddDbContext<MovieContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
 // Register the Swagger generator, defining one or more Swagger documents.
 builder.Services.AddSwaggerGen(c =>
 {
@@ -35,12 +36,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planner App API V1"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie app API V1"));
 }
 else
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Planner App API V1"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie app API V1"));
 }
 
 app.UseHttpsRedirection();
