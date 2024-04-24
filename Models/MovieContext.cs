@@ -17,10 +17,12 @@ namespace EAD2.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Director>()
-                .HasMany(d => d.Movies)
-                .WithOne(m => m.Director)
-                .HasForeignKey(m => m.DirectorId);
+            modelBuilder.Entity<Movies>()
+            .HasOne(m => m.Director)
+            .WithMany(d => d.Movies)
+            .HasForeignKey(m => m.DirectorId)
+            .IsRequired(false);
+
 
             // Add this if you haven't already to explicitly set the table names (optional)
             modelBuilder.Entity<Movies>().ToTable("Movies");
