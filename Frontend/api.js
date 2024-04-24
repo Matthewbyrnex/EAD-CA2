@@ -1,4 +1,3 @@
-// JavaScript source code
 import axios from 'axios';
 
 const api = axios.create({
@@ -7,5 +6,8 @@ const api = axios.create({
 
 export const fetchDirectors = () => api.get('/directors');
 export const fetchMoviesByDirector = (directorId) => api.get(`/directors/${directorId}/suggestions`);
+export const fetchDirectorDetails = (directorId) => api.get(`/directors/${directorId}`);
+export const fetchMovies = () => api.get('/Movies');
+
 
 export default api;

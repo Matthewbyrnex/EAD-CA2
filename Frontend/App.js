@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/HomeScreen';
 import ProfileScreen from './src/ProfileScreen';
-import RecommendationsScreen from './src/RecommendationsScreen';
+import RecommendationsScreen from './src/RecommendationsScreen'; // Make sure the import is correct
 import MovieDetailsScreen from './src/MovieDetailsScreen';
 
 const Stack = createStackNavigator();
