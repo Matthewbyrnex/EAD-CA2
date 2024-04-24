@@ -15,6 +15,7 @@ namespace EAD2.Models
 
 
 
+
         public DbSet<Movies> Movies { get; set; } = null!;
         public DbSet<Director> Director { get; set; } = null!;
 
@@ -43,6 +44,12 @@ namespace EAD2.Models
 
                 // Navigation property is configured via the Movies entity
             });
+
+            {
+                modelBuilder.Entity<User>()
+                    .HasMany(u => u.LikedMovies)
+                    .WithMany(m => m.Users);
+            }
 
 
 

@@ -29,16 +29,29 @@ namespace EAD2.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        public async Task<ActionResult<User>> GetUserWithMovies(long userId)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users
+                .Include(u => u.LikedMovies)
+                .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
-            {
-                return NotFound();
-            }
+                return NotFound("User not found.");
 
-            return user;
+            return Ok(user);
+        }
+
+        [HttpGet("{userId}/likedmovies")]
+        public async Task<ActionResult<List<Movies>>> GetLikedMovies(long userId)
+        {
+            var user = await _context.Users
+                .Include(u => u.LikedMovies)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+                return NotFound("User not found.");
+
+            return Ok(user.LikedMovies);
         }
 
         // PUT: api/Users/5
@@ -108,8 +121,9 @@ namespace EAD2.Controllers
                 .Include(u => u.LikedMovies)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
+            if (user == null) return NotFound("User not found.");
             var movie = await _context.Movies.FindAsync(movieId);
-            if (movie == null) return NotFound();
+            if (movie == null) return NotFound("Movie not found.");
 
             user.LikedMovies.Add(movie);
             await _context.SaveChangesAsync();

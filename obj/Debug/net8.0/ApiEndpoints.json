@@ -281,15 +281,20 @@
   },
   {
     "ContainingType": "EAD2.Controllers.UsersController",
-    "Method": "GetUser",
+    "Method": "GetUserWithMovies",
     "RelativePath": "api/Users/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "userId",
         "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -362,6 +367,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EAD2.Controllers.UsersController",
+    "Method": "GetLikedMovies",
+    "RelativePath": "api/Users/{userId}/likedmovies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[EAD2.Models.Movies, EAD2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EAD2.Controllers.UsersController",
