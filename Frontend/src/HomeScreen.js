@@ -18,9 +18,15 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, styles.browseButton]}
-          onPress={() => navigation.navigate('Recommendations')}
+          onPress={() => navigation.navigate('MovieList')} // This navigates to the movie list page
         >
           <Text style={styles.buttonText}>Browse Movies</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, styles.recommendationsButton]}
+          onPress={() => navigation.navigate('MovieRecommendation')} // Ensure the navigation name matches your stack navigator
+        >
+          <Text style={styles.buttonText}>Movie Recommendations</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -49,6 +55,7 @@ const styles = StyleSheet.create({
     width: '80%',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    flexWrap: 'wrap', // Allows buttons to wrap in smaller screens
   },
   button: {
     padding: 10,
@@ -56,12 +63,16 @@ const styles = StyleSheet.create({
     minWidth: 120,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 10, // Adds space between wrapped buttons
   },
   profileButton: {
     backgroundColor: '#007bff',
   },
   browseButton: {
     backgroundColor: '#28a745',
+  },
+  recommendationsButton: {
+    backgroundColor: '#ffc107', // Different color to distinguish the button
   },
   buttonText: {
     color: '#fff',
