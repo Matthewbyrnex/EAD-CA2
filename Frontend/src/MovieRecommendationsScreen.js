@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Modal, View, Text, FlatList, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
 import { fetchDirectors, fetchMoviesByDirector } from '../api.js'; // Ensure this path is correct
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
 
 const MovieRecommendationsScreen = () => {
   const [directors, setDirectors] = useState([]);
   const [selectedDirector, setSelectedDirector] = useState(null);
   const [movies, setMovies] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation(); // Get the navigation prop
 
   useEffect(() => {
     loadDirectors();
@@ -14,7 +17,7 @@ const MovieRecommendationsScreen = () => {
   const loadDirectors = async () => {
     try {
       const response = await fetchDirectors();
-      setDirectors(response.data); // Assuming the API returns an array of directors
+      setDirectors(response.data);
     } catch (error) {
       console.error('Failed to fetch directors:', error);
     }
@@ -24,7 +27,8 @@ const MovieRecommendationsScreen = () => {
     setSelectedDirector(directorId);
     try {
       const response = await fetchMoviesByDirector(directorId);
-      setMovies(response.data); // Assuming the API returns an array of suggested movies
+      setMovies(response.data);
+      setModalVisible(true);  // Open the modal on successful data fetch
     } catch (error) {
       console.error('Failed to fetch suggestions:', error);
     }
@@ -35,7 +39,7 @@ const MovieRecommendationsScreen = () => {
       <View style={styles.bannerContainer}>
         <Image
           style={styles.bannerImage}
-          source={require('../img/reel2.png')} // Adjust path as necessary
+          source={require('../img/reel2.png')}
         />
       </View>
       <View style={styles.contentContainer}>
@@ -52,16 +56,32 @@ const MovieRecommendationsScreen = () => {
             </TouchableOpacity>
           )}
         />
-        {selectedDirector && (
-          <>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);  // Allows closing the modal when back button is pressed on Android
+          }}
+        >
+          <View style={styles.modalView}>
             <Text style={styles.subtitle}>Suggested Movies:</Text>
             <FlatList
               data={movies}
               keyExtractor={item => item.id.toString()}
               renderItem={({ item }) => <Text style={styles.movieItem}>{item.title}</Text>}
             />
-          </>
-        )}
+            <Button
+              title="Close"
+              onPress={() => setModalVisible(false)}
+            />
+          </View>
+        </Modal>
+        <Button
+          title="Add Director"
+          onPress={() => navigation.navigate('CreateDirectorScreen')}
+          color="#39ff14" // Neon green color to match your design
+        />
       </View>
     </View>
   );
@@ -83,6 +103,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  modalView: {
+    marginTop: 22,
+    padding: 20,
+    flex: 1,
+    backgroundColor: '#1c1c1e', // Consistent background color with the main view
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -90,13 +116,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center', // Center title
     marginTop: 20,
     marginBottom: 20, // Space between the banner image and the title
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginTop: 20,
-    marginBottom: 10,
   },
   item: {
     padding: 20,
@@ -111,21 +130,26 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  itemText: {
-    fontSize: 18,
-    alignSelf: 'center',
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#ffffff',
-    
-
+    marginTop: 30,  // Increased top margin for more space above the movies list
+    marginBottom: 20,  // Increased bottom margin for more visual separation
   },
   movieItem: {
     fontSize: 18,
-    paddingVertical: 10,
+    paddingVertical: 15,  // Increased vertical padding for a more spacious look
     paddingLeft: 20,
     color: '#ffffff',
     borderBottomColor: '#393939',
     borderBottomWidth: 1,
-    marginVertical: 5,
+    marginVertical: 8,  // Increased vertical margin between items
+  },
+  itemText: {
+    fontSize: 18,
+    alignSelf: 'center',
+    color: '#ffffff',
   }
 });
 
