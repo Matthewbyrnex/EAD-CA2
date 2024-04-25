@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EAD2.Migrations
 {
     [DbContext(typeof(MovieContext))]
-    [Migration("20240424152736_Test31")]
-    partial class Test31
+    [Migration("20240425034129_test62")]
+    partial class test62
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,9 @@ namespace EAD2.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("DirectorId")
                         .HasColumnType("bigint");

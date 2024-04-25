@@ -11,6 +11,8 @@ namespace EAD2.Models
 
         public long DirectorId { get; set; }
 
+        public string? Description { get; set; }
+
     }
 
     public class Director
