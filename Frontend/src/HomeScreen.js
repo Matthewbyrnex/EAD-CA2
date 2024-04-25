@@ -1,6 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
+// Import local image if not using a direct path
+// import reelImage from './path_to_your_image/reel.png'; // Uncomment and adjust if necessary
+
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -11,24 +14,23 @@ const HomeScreen = ({ navigation }) => {
       />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={[styles.button, styles.profileButton]}
-          onPress={() => navigation.navigate('Profile')}
-        >
-          <Text style={styles.buttonText}>My Watchlist</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, styles.browseButton]}
-          onPress={() => navigation.navigate('MovieList')} // This navigates to the movie list page
+          style={styles.button}
+          onPress={() => navigation.navigate('MovieList')}
         >
           <Text style={styles.buttonText}>Browse Movies</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.button, styles.recommendationsButton]}
-          onPress={() => navigation.navigate('MovieRecommendation')} // Ensure the navigation name matches your stack navigator
+          style={styles.button}
+          onPress={() => navigation.navigate('MovieRecommendation')}
         >
           <Text style={styles.buttonText}>Movie Recommendations</Text>
         </TouchableOpacity>
       </View>
+      <Image
+        style={styles.reelImage}
+        source={require('/Users/matthewb/CA2-React_Backend/EAD-CA2/Frontend/img/reel.png')} // Adjust this path if you use import
+        // source={reelImage} // Use this line instead if importing
+      />
     </View>
   );
 };
@@ -38,45 +40,47 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#232323',
+    backgroundColor: '#1c1c1e',
   },
   title: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginBottom: 20,
+    marginBottom: 30,
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
   logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
+    width: 180,
+    height: 180,
+    marginBottom: 30,
   },
   buttonContainer: {
     width: '80%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap', // Allows buttons to wrap in smaller screens
+    alignItems: 'center',
+    marginBottom: 20, // Adjust spacing as needed
   },
   button: {
-    padding: 10,
-    borderRadius: 5,
-    minWidth: 120,
+    backgroundColor: '#2a2a2a',
+    borderColor: '#39ff14',
+    borderWidth: 2,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10, // Adds space between wrapped buttons
-  },
-  profileButton: {
-    backgroundColor: '#007bff',
-  },
-  browseButton: {
-    backgroundColor: '#28a745',
-  },
-  recommendationsButton: {
-    backgroundColor: '#ffc107', // Different color to distinguish the button
+    marginBottom: 20,
+    width: '100%',
   },
   buttonText: {
-    color: '#fff',
+    color: '#ffffff',
     fontWeight: 'bold',
+    fontSize: 16,
+  },
+  reelImage: {
+    width: 300, // Adjust based on your needs
+    height: 150, // Adjust based on your needs
+    resizeMode: 'contain', // Ensures the image fits within the dimensions without stretching
   },
 });
 
