@@ -46,6 +46,9 @@ namespace EAD2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("DirectorId")
                         .HasColumnType("bigint");
 
