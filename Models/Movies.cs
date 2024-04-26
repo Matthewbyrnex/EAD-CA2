@@ -23,12 +23,4 @@ namespace EAD2.Models
     }
 
 
-
-    public class User
-    {
-        public long Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }  // Stored as a hash for security
-        public List<Movies> LikedMovies { get; set; }   // Navigation property for liked movies
-    }
 }

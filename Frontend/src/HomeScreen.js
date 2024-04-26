@@ -8,10 +8,6 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to the Movie Recommendation App!</Text>
-      <Image
-        style={styles.logo}
-        source={{ uri: 'https://example.com/logo.png' }} // Replace with your actual logo URL
-      />
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
@@ -28,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <Image
         style={styles.reelImage}
-        source={require('/Users/matthewb/CA2-React_Backend/EAD-CA2/Frontend/img/reel.png')} // Adjust this path if you use import
+        source={require('../img/reel.png')} // Adjust this path if you use import
         // source={reelImage} // Use this line instead if importing
       />
     </View>
