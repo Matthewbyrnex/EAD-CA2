@@ -70,15 +70,12 @@ namespace EAD2.Controllers
             if (director == null)
                 return NotFound();
 
-            // This is where you'll implement your logic to find similar movies
-            // For simplicity, we're just returning the director's movies
-            var suggestedMovies = director.Movies; // Implement actual suggestion logic here
+            var suggestedMovies = director.Movies; 
 
             return Ok(suggestedMovies);
         }
 
         // PUT: api/Movies/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMovies(long id, Movies movies)
         {
@@ -109,7 +106,6 @@ namespace EAD2.Controllers
         }
 
         // POST: api/Movies
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Movies>> PostMovie(Movies movie)
         {

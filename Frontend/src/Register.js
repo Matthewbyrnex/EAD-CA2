@@ -13,7 +13,6 @@ const Register = ({ navigation }) => {
         Password: password
       });
       console.log(response.data); // handle response, maybe log in the user directly or navigate to the login page
-      // navigation.navigate('Login'); // Redirect to login page or directly log them in
     } catch (error) {
       console.error(error);
     }

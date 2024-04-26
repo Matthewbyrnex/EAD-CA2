@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
-// Import local image if not using a direct path
-// import reelImage from './path_to_your_image/reel.png'; // Uncomment and adjust if necessary
-
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -25,7 +22,6 @@ const HomeScreen = ({ navigation }) => {
       <Image
         style={styles.reelImage}
         source={require('../img/reel.png')} // Adjust this path if you use import
-        // source={reelImage} // Use this line instead if importing
       />
     </View>
   );
@@ -74,9 +70,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   reelImage: {
-    width: 300, // Adjust based on your needs
-    height: 150, // Adjust based on your needs
-    resizeMode: 'contain', // Ensures the image fits within the dimensions without stretching
+    width: 300, 
+    height: 150, 
+    resizeMode: 'contain', 
   },
 });
 

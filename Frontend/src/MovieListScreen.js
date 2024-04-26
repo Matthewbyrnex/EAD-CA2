@@ -81,7 +81,7 @@ const MovieListScreen = () => {
     <View style={styles.container}>
       <Image
         style={styles.bannerImage}
-        source={require('../img/reel2.png')} // Adjust path as necessary
+        source={require('../img/reel2.png')} 
       />
       <Text style={styles.title}>Movie List</Text>
       <TextInput
@@ -89,12 +89,12 @@ const MovieListScreen = () => {
         value={searchQuery}
         onChangeText={setSearchQuery}
         placeholder="Search movies by title"
-        placeholderTextColor="#999" // Lighter text for placeholder
+        placeholderTextColor="#999" 
       />
       <Button title="Search" onPress={handleSearch} color="#39ff14" />
       <FlatList
         data={movies}
-        keyExtractor={(item) => item.id.toString()} // Adjust according to your movie data structure
+        keyExtractor={(item) => item.id.toString()} 
         renderItem={({ item }) => (
           <View>
             <TouchableOpacity style={styles.movieItemContainer} onPress={() => toggleDescription(item.id)}>

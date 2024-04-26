@@ -19,7 +19,7 @@ namespace EAD2.Models
     {
         public long Id { get; set; }
         public string? Name { get; set; }
-        public List<Movies>? Movies { get; set; }  // Navigation property
+        public List<Movies>? Movies { get; set; }  
     }
 
 

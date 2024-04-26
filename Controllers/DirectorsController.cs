@@ -42,7 +42,6 @@ namespace EAD2.Controllers
         }
 
         // PUT: api/Directors/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDirector(long id, Director director)
         {
@@ -73,7 +72,6 @@ namespace EAD2.Controllers
         }
 
         // POST: api/Directors
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Director>> PostDirector(Director director)
         {

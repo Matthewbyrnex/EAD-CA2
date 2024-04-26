@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   bannerImage: {
     width: '100%', // Full width of the screen
-    height: 150, // Fixed height for consistency
+    height: 150, 
   },
   contentContainer: {
     flex: 1,
@@ -113,9 +113,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff', // White text color for the title
-    alignSelf: 'center', // Center title
+    alignSelf: 'center', 
     marginTop: 20,
-    marginBottom: 20, // Space between the banner image and the title
+    marginBottom: 20,
   },
   item: {
     padding: 20,
@@ -134,17 +134,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginTop: 30,  // Increased top margin for more space above the movies list
-    marginBottom: 20,  // Increased bottom margin for more visual separation
+    marginTop: 30,  
+    marginBottom: 20,  
   },
   movieItem: {
     fontSize: 18,
-    paddingVertical: 15,  // Increased vertical padding for a more spacious look
+    paddingVertical: 15,  
     paddingLeft: 20,
     color: '#ffffff',
     borderBottomColor: '#393939',
     borderBottomWidth: 1,
-    marginVertical: 8,  // Increased vertical margin between items
+    marginVertical: 8,  
   },
   itemText: {
     fontSize: 18,

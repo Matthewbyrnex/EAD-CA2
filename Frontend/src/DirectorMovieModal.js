@@ -8,7 +8,6 @@ const DirectorMovieModal = ({ visible, onClose }) => {
   const [movieDescription, setMovieDescription] = useState('');
 
   const handleAdd = async () => {
-    // Data structure may need adjustment based on your API requirements
     const directorData = {
       name: directorName,
       movie: [{
